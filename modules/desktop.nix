@@ -25,7 +25,7 @@
   
   # User account
   users = {
-  	users.ja = {
+  	users.nick = {
     	isNormalUser = true;
     	extraGroups = [ "libvirtd" "wheel" "video" "input" "audio" ]; # Enable ‘sudo’ for the user.
     	packages = with pkgs; [

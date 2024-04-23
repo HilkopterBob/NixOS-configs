@@ -13,23 +13,9 @@
       ./modules/desktop.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
-  #boot.loader.systemd-boot.enable = true;
-  #boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi = {
-	efiSysMountPoint = "/efi";
-	canTouchEfiVariables = true;
-  	};
-  boot.loader.grub = {
-	enable = true;
-	devices = [ "nodev" ];
-	efiSupport = true;
-  	gfxmodeBios = "auto";
-	memtest86.enable = true;
-	extraGrubInstallArgs = [ "--bootloader-id=NixOS" ];
-	configurationName = "NixOS";
-  	};
-  boot.loader.timeout = 1;
+  # --- TODO: Copy Bootloader-Conf HERE
+
+  # --- END Bootloader conf
  
   # NOTE SET KERNEL BOOTLOADER OPTIONS and Hostname ON INDIVIDUAL MODULE NIX  
   # networking.hostName = "NixOS"; # Define your hostname.
@@ -37,17 +23,17 @@
   networking.networkmanager.enable = true; 
 
   # Set your time zone.
-  time.timeZone = "Asia/Seoul";
+  time.timeZone = "Europe/Berlin";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "de_DE.UTF-8";
   console = {
-     font = "Lat2-Terminus16";
-     keyMap = "us";
+     # font = "Lat2-Terminus16"; not a big fan
+     keyMap = "de";
   #   useXkbConfig = true; # use xkbOptions in tty.
   };
 
@@ -229,44 +215,11 @@
   }; 
   
   # Masking sleep, hibernate, suspend.. etc
-  systemd = {
-		targets = {
-		sleep = {
-		enable = false;
-		unitConfig.DefaultDependencies = "no";
-  		};
-		suspend = {
-		enable = false;
-		unitConfig.DefaultDependencies = "no";
-		};
-		hibernate = {
-		enable = false;
-		unitConfig.DefaultDependencies = "no";
-		};
-		"hybrid-sleep" = {
-		enable = false;
-		unitConfig.DefaultDependencies = "no";
-		};
-	};
-  };
+  
 
-  # zram
-  zramSwap = {
-	enable = true;
-	priority = 100;
-	memoryPercent = 30;
-	swapDevices = 1;
-  };
+  # --- TODO: Copy Swap Config Here
 
-  #services.zram-generator = {
-    #enable = true;
-    #settings = {
-	#name = dev;
-	#zram-size = "8192";
-	#compression-algorithm = "zstd";
-	#swap-priority = 100;
-	#};
-  #};
+  # --- End Swap Config
   
   # Enable the X11 windowing system.
   # services.xserver.enable = true;  
